@@ -52,12 +52,16 @@ Rootsymbol link_value_list.
 
 link_value_list -> link_value : ['$1'].
 link_value_list -> link_value ',' link_value_list : ['$1' | '$3'].
-link_value -> '<' uri '>' link_params : {core_link, '$2', '$4'}.
+link_value -> '<' uri '>' link_params : {coap_resource, '$2', '$4'}.
 uri -> 'string' : {string, _Line, String} = '$1', String.
 link_params -> ';' link_param : ['$2'].
 link_params -> ';' link_param link_params : ['$2' | '$3'].
 link_param -> link_param_name '=' link_param_value : {'$1', '$3'}.
-link_param_name -> 'atom' : {atom, _Line, Atom} = '$1', Atom.
-link_param_name -> 'if' : 'if'.
+link_param_name -> 'atom' : {atom, _Line, Atom} = '$1',
+	case Atom of
+		rt -> resource_type;
+		sz -> size
+	end.
+link_param_name -> 'if' : 'interface'.
 link_param_value -> 'string' : {string, _Line, String} = '$1', String.
 link_param_value -> 'integer' : {integer, _Line, Integer} = '$1', Integer.

@@ -21,15 +21,14 @@
 %%------------------------------------------------------------------------------
 %% Types
 %%------------------------------------------------------------------------------
+-type coap_resource_attribute() :: resource_type | interface | size.
 
 %%------------------------------------------------------------------------------
 %% Records
 %%------------------------------------------------------------------------------
 -record(coap_resource, {
 	uri			:: nonempty_string(),
-	type		:: nonempty_string(),
-	interface	:: nonempty_string(),
-	size		:: non_neg_integer() | undefined
+	attributes	:: [{coap_resource_attribute(), string() | integer()}]
 }).
 
 -endif.
