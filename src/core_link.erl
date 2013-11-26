@@ -12,7 +12,6 @@
 %% Include files
 %%------------------------------------------------------------------------------
 -include("../include/coap.hrl").
--include_lib("logger/include/logger.hrl").
 -include_lib("testutils/include/testing.hrl").
 
 %%------------------------------------------------------------------------------

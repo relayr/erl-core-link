@@ -13,7 +13,6 @@
 %%------------------------------------------------------------------------------
 %% Include files
 %%------------------------------------------------------------------------------
--include_lib("prox_misc/include/types.hrl").
 
 %%------------------------------------------------------------------------------
 %% Definitions
@@ -26,6 +25,7 @@
 -define(COAP_VERSION, 1).
 
 -define(COAP_MSG_PAYLOAD_MARKER, 16#FF).
+-define(COAP_MAX_MSG_ID, 65535).
 
 %%------------------------------------------------------------------------------
 %% Types
@@ -36,14 +36,15 @@
 -type coap_msg_code()			:: non_neg_integer().
 -type coap_msg_class()			:: non_neg_integer().
 -type coap_msg_detail()			:: non_neg_integer().
--type coap_msg_id()				:: id().
+-type coap_msg_id()				:: non_neg_integer().
+-type coap_option_id()			:: non_neg_integer().
 -type coap_resource_attribute() :: resource_type | interface | size.
 
 %%------------------------------------------------------------------------------
 %% Records
 %%------------------------------------------------------------------------------
 -record(coap_option, {
-	id			:: id(),
+	id			:: coap_option_id(),
 	value		:: binary()
 }).
 
