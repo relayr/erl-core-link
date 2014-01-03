@@ -105,4 +105,8 @@
 	attributes	:: [{coap_resource_attribute(), string() | integer()}]
 }).
 
+-record(coap_socket, {
+
+}).
+
 -endif.
