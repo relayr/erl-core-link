@@ -46,22 +46,39 @@
 %% ext-value      = <defined in [RFC5987]>
 %% parmname       = <defined in [RFC5987]>
 
-Nonterminals link_value_list link_value uri link_params link_param link_param_name link_param_value.
-Terminals '<' '>' ';' ',' '=' 'atom' 'if' 'integer' 'string'.
+Nonterminals link_value_list link_value uri link_params link_param link_param_value text number.
+Terminals '<' '>' ';' ',' '=' '"' integer string.
 Rootsymbol link_value_list.
 
 link_value_list -> link_value : ['$1'].
 link_value_list -> link_value ',' link_value_list : ['$1' | '$3'].
-link_value -> '<' uri '>' link_params : {coap_resource, '$2', '$4'}.
-uri -> 'string' : {string, _Line, String} = '$1', String.
+
+link_value -> '<' uri '>' link_params : #coap_resource{uri = '$2', attributes = '$4'}.
+
+uri -> text : '$1'.
+
 link_params -> ';' link_param : ['$2'].
 link_params -> ';' link_param link_params : ['$2' | '$3'].
-link_param -> link_param_name '=' link_param_value : {'$1', '$3'}.
-link_param_name -> 'atom' : {atom, _Line, Atom} = '$1',
-	case Atom of
-		rt -> resource_type;
-		sz -> size
-	end.
-link_param_name -> 'if' : 'interface'.
-link_param_value -> 'string' : {string, _Line, String} = '$1', String.
-link_param_value -> 'integer' : {integer, _Line, Integer} = '$1', Integer.
+
+link_param -> text '=' link_param_value : {decode_name('$1'), '$3'}.
+
+link_param_value -> number : '$1'.
+link_param_value -> '"' text '"' : '$2'.
+
+text -> string : value_of('$1').
+number -> integer : value_of('$1').
+
+Erlang code.
+
+-include("../include/coap.hrl").
+
+value_of(Token) -> 
+    element(3, Token).
+
+decode_name(Name) ->
+    case Name of
+        "rt" -> "resource_type";
+        "sz" -> "size";
+        "if" -> "interface";
+        _ -> Name
+    end.

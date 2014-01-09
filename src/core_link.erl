@@ -35,10 +35,15 @@ resource_attributes() ->
 build_resources(Resources) ->
 	build_resources(Resources, []).
 
--spec parse_resources(Data :: nonempty_string()) -> {ok, [#coap_resource{}, ...]}.
+-spec parse_resources(Data :: nonempty_string()) -> {ok, [#coap_resource{}, ...]} | {error, tuple()}.
 parse_resources(Data) ->
-	{_, Body ,_} = erl_scan:string(Data),
-	core_link_parser:parse(Body).
+    case core_link_lexer:string(Data) of
+        {ok, Body , _Line} ->
+            core_link_parser:parse(Body);
+        {error, Reason, _Line} ->
+            {error, Reason}
+    end.
+	
 
 %% =============================================================================
 %% Local functions
@@ -55,17 +60,19 @@ build_resources([Resource | RestOfResources], Elements) ->
 -spec build_resource(Resource :: #coap_resource{}) -> nonempty_string().
 build_resource(Resource) ->
 	#coap_resource{uri = URI, attributes = Attributes} = Resource,
-	lists:flatten(io_lib:format("<~p>~s", [URI, build_resource_attributes(Attributes, [])])).
+	lists:flatten(io_lib:format("<~s>~s", [URI, build_resource_attributes(Attributes, [])])).
 
 build_resource_attributes([], ConvertedAttributes) ->
 	lists:flatten(lists:reverse(ConvertedAttributes));
 build_resource_attributes([{AttributeName, AttributeValue} | RestOfAttributes], ConvertedAttributes) ->
 	build_resource_attributes(RestOfAttributes, [build_resource_attribute(AttributeName, AttributeValue) | ConvertedAttributes]).
   
--spec build_resource_attribute(AttributeName :: atom(), AttributeValue :: string() | integer()) -> nonempty_string().
-build_resource_attribute(resource_type, AttributeValue) ->
-	io_lib:format(";rt=~p", [AttributeValue]);
-build_resource_attribute(interface, AttributeValue) ->
-	io_lib:format(";if=~p", [AttributeValue]);
-build_resource_attribute(size, AttributeValue) ->
-	io_lib:format(";sz=~p", [AttributeValue]).
+-spec build_resource_attribute(AttributeName :: nonempty_string(), AttributeValue :: string() | integer()) -> nonempty_string().
+build_resource_attribute(AttributeName, AttributeValue) ->
+    case AttributeName of
+        "resource_type" -> io_lib:format(";rt=~p", [AttributeValue]);
+        "interface" -> io_lib:format(";if=~p", [AttributeValue]);
+        "size" -> io_lib:format(";sz=~p", [AttributeValue]);
+        _ -> io_lib:format(";~s=~p", [AttributeName, AttributeValue])
+    end.
+    

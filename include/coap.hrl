@@ -85,7 +85,7 @@
 -type coap_msg_detail()			:: non_neg_integer().
 -type coap_msg_id()				:: non_neg_integer().
 -type coap_uri()				:: nonempty_string().
--type coap_resource_attribute() :: resource_type | interface | size.
+-type coap_resource_attribute() :: {nonempty_string(), string() | integer()}.
 
 %%------------------------------------------------------------------------------
 %% Records
@@ -101,8 +101,8 @@
 }).
 
 -record(coap_resource, {
-	uri			:: nonempty_string(),
-	attributes	:: [{coap_resource_attribute(), string() | integer()}]
+	uri			:: coap_uri(),
+	attributes	:: [coap_resource_attribute()]
 }).
 
 -record(coap_socket, {
