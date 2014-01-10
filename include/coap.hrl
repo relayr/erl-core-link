@@ -85,7 +85,7 @@
 -type coap_msg_detail()			:: non_neg_integer().
 -type coap_msg_id()				:: non_neg_integer().
 -type coap_uri()				:: nonempty_string().
--type coap_resource_attribute() :: {nonempty_string(), string() | integer()}.
+-type coap_resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
 
 %%------------------------------------------------------------------------------
 %% Records

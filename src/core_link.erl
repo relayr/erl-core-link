@@ -67,12 +67,19 @@ build_resource_attributes([], ConvertedAttributes) ->
 build_resource_attributes([{AttributeName, AttributeValue} | RestOfAttributes], ConvertedAttributes) ->
 	build_resource_attributes(RestOfAttributes, [build_resource_attribute(AttributeName, AttributeValue) | ConvertedAttributes]).
   
--spec build_resource_attribute(AttributeName :: nonempty_string(), AttributeValue :: string() | integer()) -> nonempty_string().
+-spec build_resource_attribute(AttributeName :: nonempty_string(), AttributeValue :: string() | integer() | undefined) -> nonempty_string().
 build_resource_attribute(AttributeName, AttributeValue) ->
-    case AttributeName of
-        "resource_type" -> io_lib:format(";rt=~p", [AttributeValue]);
-        "interface" -> io_lib:format(";if=~p", [AttributeValue]);
-        "size" -> io_lib:format(";sz=~p", [AttributeValue]);
-        _ -> io_lib:format(";~s=~p", [AttributeName, AttributeValue])
-    end.
+    DecodedName = case AttributeName of
+        "resource_type" -> "rt";
+        "interface" -> "if";
+        "size" -> "sz";
+        _ -> AttributeName
+    end,
+    format_attribute(DecodedName, AttributeValue).
+
+-spec format_attribute(AttributeName :: nonempty_string(), AttributeValue :: string() | integer() | undefined) -> nonempty_string().
+format_attribute(AttributeName, undefined) ->
+    io_lib:format(";~s", [AttributeName]);
+format_attribute(AttributeName, AttributeValue) ->
+    io_lib:format(";~s=~p", [AttributeName, AttributeValue]).
     

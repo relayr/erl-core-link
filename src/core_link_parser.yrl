@@ -60,6 +60,7 @@ uri -> text : '$1'.
 link_params -> ';' link_param : ['$2'].
 link_params -> ';' link_param link_params : ['$2' | '$3'].
 
+link_param -> text : {decode_name('$1'), undefined}.
 link_param -> text '=' link_param_value : {decode_name('$1'), '$3'}.
 
 link_param_value -> number : '$1'.
