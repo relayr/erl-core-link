@@ -62,24 +62,14 @@ build_resource(Resource) ->
 	#coap_resource{uri = URI, attributes = Attributes} = Resource,
 	lists:flatten(io_lib:format("<~s>~s", [URI, build_resource_attributes(Attributes, [])])).
 
+-spec build_resource_attributes(Attributes :: [tuple()], ConvertedAttributes :: [nonempty_string()]) -> [nonempty_string()].
 build_resource_attributes([], ConvertedAttributes) ->
 	lists:flatten(lists:reverse(ConvertedAttributes));
 build_resource_attributes([{AttributeName, AttributeValue} | RestOfAttributes], ConvertedAttributes) ->
 	build_resource_attributes(RestOfAttributes, [build_resource_attribute(AttributeName, AttributeValue) | ConvertedAttributes]).
   
 -spec build_resource_attribute(AttributeName :: nonempty_string(), AttributeValue :: string() | integer() | undefined) -> nonempty_string().
-build_resource_attribute(AttributeName, AttributeValue) ->
-    DecodedName = case AttributeName of
-        "resource_type" -> "rt";
-        "interface" -> "if";
-        "size" -> "sz";
-        _ -> AttributeName
-    end,
-    format_attribute(DecodedName, AttributeValue).
-
--spec format_attribute(AttributeName :: nonempty_string(), AttributeValue :: string() | integer() | undefined) -> nonempty_string().
-format_attribute(AttributeName, undefined) ->
+build_resource_attribute(AttributeName, undefined) ->
     io_lib:format(";~s", [AttributeName]);
-format_attribute(AttributeName, AttributeValue) ->
+build_resource_attribute(AttributeName, AttributeValue) ->
     io_lib:format(";~s=~p", [AttributeName, AttributeValue]).
-    
