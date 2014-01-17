@@ -37,11 +37,16 @@ build_resources(Resources) ->
 
 -spec parse_resources(Data :: nonempty_string()) -> {ok, [#coap_resource{}, ...]} | {error, tuple()}.
 parse_resources(Data) ->
-    case core_link_lexer:string(Data) of
-        {ok, Body , _Line} ->
-            core_link_parser:parse(Body);
-        {error, Reason, _Line} ->
-            {error, Reason}
+    case string:len(string:strip(Data)) of
+        0 ->
+            {ok, []};
+        _OtherLen ->
+            case core_link_lexer:string(Data) of
+                {ok, Body , _Line} ->
+                    core_link_parser:parse(Body);
+                {error, Reason, _Line} ->
+                    {error, Reason}
+            end
     end.
 	
 
