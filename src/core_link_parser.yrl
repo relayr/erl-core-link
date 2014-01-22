@@ -53,6 +53,7 @@ Rootsymbol link_value_list.
 link_value_list -> link_value : ['$1'].
 link_value_list -> link_value ',' link_value_list : ['$1' | '$3'].
 
+link_value -> '<' uri '>' : #coap_resource{uri = '$2', attributes = []}.
 link_value -> '<' uri '>' link_params : #coap_resource{uri = '$2', attributes = '$4'}.
 
 uri -> text : '$1'.
