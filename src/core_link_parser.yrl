@@ -66,6 +66,7 @@ link_param -> text '=' link_param_value : {'$1', '$3'}.
 
 link_param_value -> number : '$1'.
 link_param_value -> '"' text '"' : '$2'.
+link_param_value -> '"' number '"' : integer_to_list('$2').
 
 text -> string : value_of('$1').
 number -> integer : value_of('$1').
