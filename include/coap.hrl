@@ -32,6 +32,16 @@
 -define(COAPS_DEFAULT_PORT, 5684).
 
 %%------------------------------------------------------------------------------
+%% CoAP Method Codes
+%%------------------------------------------------------------------------------
+% Request 0.xx
+-define(COAP_MTH_CODE_EMPTY,					0).
+-define(COAP_MTH_CODE_GET,						1).
+-define(COAP_MTH_CODE_POST,						2).
+-define(COAP_MTH_CODE_PUT,						3).
+-define(COAP_MTH_CODE_DELETE,					4).
+
+%%------------------------------------------------------------------------------
 %% CoAP Response Codes
 %%------------------------------------------------------------------------------
 % Success 2.xx
