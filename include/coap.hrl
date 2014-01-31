@@ -101,13 +101,13 @@
 %% Records
 %%------------------------------------------------------------------------------
 -record(coap_msg, {
-	version		:: coap_version(),
-	type		:: coap_msg_type(),
-	token		:: coap_msg_token(),
-	code		:: coap_msg_code(),
-	id			:: coap_msg_id(),
-	options		:: [#coap_option{}],
-	payload		:: binary()
+	version	= ?COAP_VERSION	:: coap_version(),
+	type					:: coap_msg_type(),
+	token = <<>>			:: coap_msg_token(),
+	code					:: coap_msg_code(),
+	id						:: coap_msg_id(),
+	options	= []			:: [#coap_option{}],
+	payload = <<>>			:: binary()
 }).
 
 -record(coap_resource, {
