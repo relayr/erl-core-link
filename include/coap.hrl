@@ -45,31 +45,31 @@
 %% CoAP Response Codes
 %%------------------------------------------------------------------------------
 % Success 2.xx
--define(COAP_RSP_CODE_CREATED,					201).
--define(COAP_RSP_CODE_DELETED,					202).
--define(COAP_RSP_CODE_VALID,					203).
--define(COAP_RSP_CODE_CHANGED,					204).
--define(COAP_RSP_CODE_CONTENT,					205).
+-define(COAP_RSP_CODE_CREATED,					65). %% 2.01
+-define(COAP_RSP_CODE_DELETED,					66). %% 2.02
+-define(COAP_RSP_CODE_VALID,					67). %% 2.03
+-define(COAP_RSP_CODE_CHANGED,					68). %% 2.04
+-define(COAP_RSP_CODE_CONTENT,					69). %% 2.05
 
 % Client Error 4.xx
--define(COAP_RSP_CODE_BAD_REQUEST,				400).
--define(COAP_RSP_CODE_UNAUTHORIZED,				401).
--define(COAP_RSP_CODE_BAD_OPTION,				402).
--define(COAP_RSP_CODE_FORBIDDEN,				403).
--define(COAP_RSP_CODE_NOT_FOUND,				404).
--define(COAP_RSP_CODE_METHOD_NOT_ALLOWED,		405).
--define(COAP_RSP_CODE_METHOD_NOT_ACCEPTABLE,	406).
--define(COAP_RSP_CODE_PRECONDITION_FAILED,		412).
--define(COAP_RSP_CODE_REQUEST_ENTITY_TOO_LARGE,	413).
--define(COAP_RSP_CODE_UNSUPPORTED_CONTENT_FORMAT,415).
+-define(COAP_RSP_CODE_BAD_REQUEST,				128). %% 4.00
+-define(COAP_RSP_CODE_UNAUTHORIZED,				129). %% 4.01
+-define(COAP_RSP_CODE_BAD_OPTION,				130). %% 4.02
+-define(COAP_RSP_CODE_FORBIDDEN,				131). %% 4.03
+-define(COAP_RSP_CODE_NOT_FOUND,				132). %% 4.04
+-define(COAP_RSP_CODE_METHOD_NOT_ALLOWED,		133). %% 4.05
+-define(COAP_RSP_CODE_METHOD_NOT_ACCEPTABLE,	134). %% 4.06
+-define(COAP_RSP_CODE_PRECONDITION_FAILED,		140). %% 4.12
+-define(COAP_RSP_CODE_REQUEST_ENTITY_TOO_LARGE,	141). %% 4.13
+-define(COAP_RSP_CODE_UNSUPPORTED_CONTENT_FORMAT,143). %% 4.15
 
 % Server Error 5.xx
--define(COAP_RSP_CODE_INTERNAL_SERVER_ERROR, 	500).
--define(COAP_RSP_CODE_NOT_IMPLEMENTED, 			501).
--define(COAP_RSP_CODE_BAD_GATEWAY,				502).
--define(COAP_RSP_CODE_SERVICE_UNAVAILABLE,		503).
--define(COAP_RSP_CODE_GATEWAY_TIMEOUT,			504).
--define(COAP_RSP_CODE_PROXYING_NOT_SUPPORTED,	505).
+-define(COAP_RSP_CODE_INTERNAL_SERVER_ERROR, 	160). %% 5.00
+-define(COAP_RSP_CODE_NOT_IMPLEMENTED, 			161). %% 5.01
+-define(COAP_RSP_CODE_BAD_GATEWAY,				162). %% 5.02
+-define(COAP_RSP_CODE_SERVICE_UNAVAILABLE,		163). %% 5.03
+-define(COAP_RSP_CODE_GATEWAY_TIMEOUT,			164). %% 5.04
+-define(COAP_RSP_CODE_PROXYING_NOT_SUPPORTED,	165). %% 5.05
 %%------------------------------------------------------------------------------
 	
 %%------------------------------------------------------------------------------
