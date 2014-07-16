@@ -27,7 +27,7 @@
 %% Exported functions
 %% =============================================================================
 
--spec resource_attributes() -> [coap_resource_attribute(), ...].
+-spec resource_attributes() -> [atom()].
 resource_attributes() ->
 	[resource_type, interface, size].
 
@@ -67,7 +67,7 @@ build_resource(Resource) ->
 	#coap_resource{uri = URI, attributes = Attributes} = Resource,
 	lists:flatten(io_lib:format("<~s>~s", [URI, build_resource_attributes(Attributes, [])])).
 
--spec build_resource_attributes(Attributes :: [tuple()], ConvertedAttributes :: [nonempty_string()]) -> [nonempty_string()].
+-spec build_resource_attributes(Attributes :: [tuple()], ConvertedAttributes :: [nonempty_string()]) -> nonempty_string().
 build_resource_attributes([], ConvertedAttributes) ->
 	lists:flatten(lists:reverse(ConvertedAttributes));
 build_resource_attributes([{AttributeName, AttributeValue} | RestOfAttributes], ConvertedAttributes) ->
