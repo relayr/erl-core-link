@@ -85,6 +85,7 @@
 -define('CoAP-application/octet-stream',        42).
 -define('CoAP-application/exi',                 47).
 -define('CoAP-application/json',                50).
+-define('CoAP-application/cbor',                60).
 %%------------------------------------------------------------------------------
 
 %%------------------------------------------------------------------------------
