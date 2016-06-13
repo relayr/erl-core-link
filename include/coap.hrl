@@ -31,7 +31,6 @@
 -define(COAP_MAX_MSG_ID, 65535).
 
 -define(COAP_DEFAULT_PORT, 5683).
--define(COAPS_DEFAULT_PORT, 5684).
 
 -define(DEFAULT_LIFETIME, "86400").
 
@@ -91,7 +90,6 @@
 %%------------------------------------------------------------------------------
 %% Types
 %%------------------------------------------------------------------------------
--type coap_protocol()           :: coap | coaps.
 -type coap_version()            :: ?COAP_VERSION.
 -type coap_msg_type()           :: ?COAP_CON_MSG | ?COAP_NON_MSG | ?COAP_ACK_MSG | ?COAP_RST_MSG.
 -type coap_msg_token()          :: binary().
