@@ -38,7 +38,7 @@
 %% CoAP Method Codes
 %%------------------------------------------------------------------------------
 % Request 0.xx
--define(COAP_MTH_CODE_EMPTY,                    0).
+-define(COAP_MSG_CODE_EMPTY,                    0).
 -define(COAP_MTH_CODE_GET,                      1).
 -define(COAP_MTH_CODE_POST,                     2).
 -define(COAP_MTH_CODE_PUT,                      3).
@@ -85,6 +85,16 @@
 -define('CoAP-application/exi',                 47).
 -define('CoAP-application/json',                50).
 -define('CoAP-application/cbor',                60).
+%%------------------------------------------------------------------------------
+
+%%------------------------------------------------------------------------------
+%% CoAP Other Constants
+%%------------------------------------------------------------------------------
+-define(ACK_TIMEOUT, 2000).
+-define(ACK_RANDOM_FACTOR, 1.5).
+-define(MAX_RETRANSMIT, 4).
+-define(NSTART, 1).
+-define(TOKEN_LEN, 4).
 %%------------------------------------------------------------------------------
 
 %%------------------------------------------------------------------------------
@@ -135,6 +145,41 @@
     ondisconnect :: fun((#coap_parsed_endpoint{}) -> ok),
     endpoints = [#coap_parsed_endpoint{}],
     socket :: pid()
+}).
+
+-record(coap_net_if_state, {
+    socket :: gen_udp:socket(),
+    connected_endpoints = dict:new() :: dict:dict()
+}).
+
+-record(net_if_endpoint, {
+    comm_pid :: pid(),
+    comm_monitor :: reference(),
+    msg_ids :: sets:set(),
+    tokens :: sets:set()
+}).
+
+-record(coap_endpoint_state, {
+    ip :: inet:ip_address(),
+    port :: inet:port_number(),
+    msg_id :: coap_msg_id(),
+    waiting = queue:new() :: queue:queue(),
+    active = maps:new() :: maps:map()
+}).
+
+-record(coap_request, {
+    request :: tuple(),
+    msg :: #coap_msg{},
+    timeout :: non_neg_integer(),
+    timeout_timer :: timer:tref(),
+    retry_no = 0 :: non_neg_integer(),
+    acked = false :: boolean(),
+    block_no = 0 :: non_neg_integer(),
+    block_size :: non_neg_integer(),
+    response_ct :: non_neg_integer(),
+    response = <<>> :: binary(),
+    response_callback :: fun(),
+    error_callback :: fun()
 }).
 
 -endif.
