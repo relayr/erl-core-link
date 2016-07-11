@@ -159,7 +159,7 @@
     tokens :: sets:set()
 }).
 
--record(coap_endpoint_state, {
+-record(coap_client_state, {
     ip :: inet:ip_address(),
     port :: inet:port_number(),
     msg_id :: coap_msg_id(),
@@ -180,6 +180,16 @@
     response = <<>> :: binary(),
     response_callback :: fun(),
     error_callback :: fun()
+}).
+
+-record(coap_server_resource, {
+    handler :: module(),
+    attributes :: [coap_resource_attribute()]
+}).
+
+-record(coap_server_state, {
+    resources = maps:new() :: maps:map(),
+    msg_id :: coap_msg_id()
 }).
 
 -endif.
