@@ -61,7 +61,7 @@
 -define(COAP_RSP_CODE_FORBIDDEN,                131). %% 4.03
 -define(COAP_RSP_CODE_NOT_FOUND,                132). %% 4.04
 -define(COAP_RSP_CODE_METHOD_NOT_ALLOWED,       133). %% 4.05
--define(COAP_RSP_CODE_METHOD_NOT_ACCEPTABLE,    134). %% 4.06
+-define(COAP_RSP_CODE_NOT_ACCEPTABLE,           134). %% 4.06
 -define(COAP_RSP_CODE_PRECONDITION_FAILED,      140). %% 4.12
 -define(COAP_RSP_CODE_REQUEST_ENTITY_TOO_LARGE, 141). %% 4.13
 -define(COAP_RSP_CODE_UNSUPPORTED_CONTENT_FORMAT,143). %% 4.15
@@ -98,6 +98,14 @@
 %%------------------------------------------------------------------------------
 
 %%------------------------------------------------------------------------------
+%% CoAP Discovery constants
+%%------------------------------------------------------------------------------
+-define(WELL_KNOWN, "/.well-known").
+-define(WELL_KNOWN_CORE, "/.well-known/core").
+-define(WELL_KNOWN_CORE_ATTRIBUTES, [{"rt", "core"}, {"ct", ?'CoAP-application/link-format'}]).
+%%------------------------------------------------------------------------------
+
+%%------------------------------------------------------------------------------
 %% Types
 %%------------------------------------------------------------------------------
 -type coap_version()            :: ?COAP_VERSION.
@@ -113,6 +121,7 @@
 %%------------------------------------------------------------------------------
 %% Records
 %%------------------------------------------------------------------------------
+
 -record(coap_msg, {
     version = ?COAP_VERSION :: coap_version(),
     type                    :: coap_msg_type(),
@@ -184,12 +193,25 @@
 
 -record(coap_server_resource, {
     handler :: module(),
-    attributes :: [coap_resource_attribute()]
+    attributes :: [coap_resource_attribute()] | hide
 }).
 
 -record(coap_server_state, {
     resources = maps:new() :: maps:map(),
     msg_id :: coap_msg_id()
+}).
+
+-record(coap_handler_state, {
+    handler :: module(),
+    handler_callback :: atom(),
+    req :: {inet:ip_address(), inet:port_number(), #coap_msg{}},
+    rsp :: #coap_msg{},
+    method :: coap_msg_code(),
+    accepted_format :: coap_option_value(),
+    content_format :: coap_option_value(),
+    is_separate = false :: boolean(),
+    response_sent = false :: boolean(),
+    state :: any()
 }).
 
 -endif.
