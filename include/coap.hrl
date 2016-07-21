@@ -162,8 +162,8 @@
 }).
 
 -record(net_if_endpoint, {
-    comm_pid :: pid(),
-    comm_monitor :: reference(),
+    client_pid :: pid(),
+    client_monitor :: reference(),
     msg_ids :: sets:set(),
     tokens :: sets:set()
 }).
