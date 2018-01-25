@@ -158,8 +158,7 @@
 
 -record(coap_net_if_state, {
     socket :: gen_udp:socket() | tuple(),
-    connected_endpoints = dict:new() :: dict:dict(),
-    tcp2udp = false :: boolean()
+    connected_endpoints = dict:new() :: dict:dict()
 }).
 
 -record(net_if_endpoint, {
