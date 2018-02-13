@@ -128,7 +128,7 @@
     version = ?COAP_VERSION :: coap_version(),
     type                    :: coap_msg_type(),
     token = <<>>            :: coap_msg_token(),
-    code                    :: coap_msg_code(),
+    code                    :: coap_msg_code() | undefined,
     id                      :: coap_msg_id(),
     options = []            :: [#coap_option{}],
     payload = <<>>          :: binary()
@@ -195,6 +195,7 @@
 
 -record(coap_server_resource, {
     handler :: module(),
+    handler_opts :: list(),
     attributes :: [coap_resource_attribute()] | hide
 }).
 
@@ -205,12 +206,13 @@
 
 -record(coap_handler_state, {
     handler :: module(),
+    handler_opts :: list(),
     handler_callback :: atom(),
     req :: {inet:ip_address(), inet:port_number(), #coap_msg{}},
-    rsp :: #coap_msg{},
-    method :: coap_msg_code(),
-    accepted_format :: coap_option_value(),
-    content_format :: coap_option_value(),
+    rsp :: #coap_msg{} | undefined,
+    method :: coap_msg_code() | undefined,
+    accepted_format :: coap_option_value() | undefined,
+    content_format :: coap_option_value() | undefined,
     is_separate = false :: boolean(),
     response_sent = false :: boolean(),
     state :: any()
