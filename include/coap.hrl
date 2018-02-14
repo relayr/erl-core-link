@@ -119,6 +119,7 @@
 -type coap_msg_id()             :: non_neg_integer().
 -type coap_uri()                :: nonempty_string().
 -type coap_resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
+-type coap_handler_path()       :: coap_uri() | {prefix, coap_uri()}.
 
 %%------------------------------------------------------------------------------
 %% Records
