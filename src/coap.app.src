@@ -1,0 +1,12 @@
+{application, coap, [
+    {description, "CoAP - Constrained Application Protocol"},
+    {vsn, "1.0"},
+    {registered,[]},
+    {applications, [
+        kernel,
+        stdlib,
+        logger,
+        conf
+    ]},
+    {mod, {coap_app, []}}
+]}.
