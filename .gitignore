@@ -1,2 +1,5 @@
 _build
+.rebar3
 *.eunit
+src/core_link_lexer.erl
+src/core_link_parser.erl
