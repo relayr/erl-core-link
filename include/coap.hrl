@@ -126,7 +126,7 @@
     type                    :: coap_msg_type(),
     token = <<>>            :: coap_msg_token(),
     code                    :: coap_msg_code() | undefined,
-    id                      :: coap_msg_id(),
+    id                      :: coap_msg_id() | undefined,
     options = []            :: [#coap_option{}],
     payload = <<>>          :: binary()
 }).
@@ -141,17 +141,17 @@
 }).
 
 -record(coap_parsed_endpoint, {
-    id :: binary(), % did()
-    adr :: inet:ip_address(),
+    id :: term(), % did()
+    adr :: string(),
     port :: inet:port_number(),
     device_model_name :: nonempty_string(),
-    resources = [#coap_resource{}] %% resources are now known from the beginning
+    resources :: [#coap_resource{}] %% resources are now known from the beginning
 }).
 
 -record(coap_resource_server_state, {
     onconnect :: fun((#coap_parsed_endpoint{}) -> ok),
     ondisconnect :: fun((#coap_parsed_endpoint{}) -> ok),
-    endpoints = [#coap_parsed_endpoint{}],
+    endpoints = [] :: [#coap_parsed_endpoint{}],
     socket :: pid()
 }).
 
@@ -178,13 +178,12 @@
 -record(coap_request, {
     request :: tuple(),
     msg :: #coap_msg{},
-    timeout :: non_neg_integer(),
-    timeout_timer :: timer:tref(),
+    timeout :: non_neg_integer() | undefined,
+    timeout_timer :: timer:tref() | undefined,
     retry_no = 0 :: non_neg_integer(),
     acked = false :: boolean(),
     block_no = 0 :: non_neg_integer(),
-    block_size :: non_neg_integer(),
-    response_ct :: non_neg_integer(),
+    block_size :: non_neg_integer() | undefined,
     response = <<>> :: binary(),
     response_callback :: fun(),
     error_callback :: fun()
