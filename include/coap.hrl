@@ -14,8 +14,6 @@
 %% Include files
 %%------------------------------------------------------------------------------
 -include("../include/coap_options.hrl").
--include_lib("prox_misc/include/networking.hrl").
--include_lib("prox_misc/include/uuid.hrl").
 
 %%------------------------------------------------------------------------------
 %% Definitions
@@ -143,9 +141,9 @@
 }).
 
 -record(coap_parsed_endpoint, {
-    id :: did(),
-    adr :: ip_address(),
-    port :: port_number(),
+    id :: binary(), % did()
+    adr :: inet:ip_address(),
+    port :: inet:port_number(),
     device_model_name :: nonempty_string(),
     resources = [#coap_resource{}] %% resources are now known from the beginning
 }).
