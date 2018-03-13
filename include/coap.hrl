@@ -51,6 +51,7 @@
 -define(COAP_RSP_CODE_VALID,                    67). %% 2.03
 -define(COAP_RSP_CODE_CHANGED,                  68). %% 2.04
 -define(COAP_RSP_CODE_CONTENT,                  69). %% 2.05
+-define(COAP_RSP_CODE_CONTINUE,                 95). %% 2.31
 
 % Client Error 4.xx
 -define(COAP_RSP_CODE_BAD_REQUEST,              128). %% 4.00
@@ -60,6 +61,7 @@
 -define(COAP_RSP_CODE_NOT_FOUND,                132). %% 4.04
 -define(COAP_RSP_CODE_METHOD_NOT_ALLOWED,       133). %% 4.05
 -define(COAP_RSP_CODE_NOT_ACCEPTABLE,           134). %% 4.06
+-define(COAP_RSP_CODE_REQUEST_ENTITY_INCOMPLETE,136). %% 4.08
 -define(COAP_RSP_CODE_PRECONDITION_FAILED,      140). %% 4.12
 -define(COAP_RSP_CODE_REQUEST_ENTITY_TOO_LARGE, 141). %% 4.13
 -define(COAP_RSP_CODE_UNSUPPORTED_CONTENT_FORMAT,143). %% 4.15
