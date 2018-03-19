@@ -1,6 +1,6 @@
 {application, coap, [
     {description, "CoAP - Constrained Application Protocol"},
-    {vsn, "1.0"},
+    {vsn, "1.0.0"},
     {registered,[]},
     {applications, [
         kernel,
@@ -8,5 +8,6 @@
         logger,
         conf
     ]},
-    {mod, {coap_app, []}}
+    {mod, {coap_app, []}},
+    {licenses, ["MIT"]}
 ]}.
