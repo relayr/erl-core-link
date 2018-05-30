@@ -5,7 +5,7 @@
     {applications, [
         kernel,
         stdlib,
-        logger,
+        pdm_logger,
         conf
     ]},
     {mod, {coap_app, []}},
