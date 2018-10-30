@@ -1,7 +1,7 @@
 {application,coap,
              [{description,"CoAP - Constrained Application Protocol"},
               {links,[{"GitHub","https://github.com/relayr/pdm-erl-coap"}]},
-              {vsn,"1.0.4"},
+              {vsn,"1.0.5"},
               {registered,[]},
               {applications,[kernel,stdlib,pdm_logger,conf]},
               {mod,{coap_app,[]}},
