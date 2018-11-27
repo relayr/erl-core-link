@@ -1,19 +1,19 @@
 {"1.1.0",
-[{<<"conf">>,{pkg,<<"conf">>,<<"1.0.19">>},0},
+[{<<"conf">>,{pkg,<<"conf">>,<<"1.0.20">>},0},
  {<<"iso8601">>,{pkg,<<"iso8601">>,<<"1.2.3">>},2},
  {<<"jiffy">>,{pkg,<<"jiffy">>,<<"0.14.11">>},1},
  {<<"pdm_logger">>,{pkg,<<"pdm_logger">>,<<"2.1.8">>},0},
- {<<"pipe">>,{pkg,<<"pipe">>,<<"1.0.4">>},1},
+ {<<"pipe">>,{pkg,<<"pipe">>,<<"1.0.5">>},1},
  {<<"process_group">>,{pkg,<<"process_group">>,<<"1.0.9">>},1},
  {<<"stream">>,{pkg,<<"stream">>,<<"1.0.6">>},1},
  {<<"time_utils">>,{pkg,<<"time_utils">>,<<"1.0.7">>},1}]}.
 [
 {pkg_hash,[
- {<<"conf">>, <<"D62C47F1A812D7CD2EB09BDC230A36AC1803B815EA18707945781964DE0B90E8">>},
+ {<<"conf">>, <<"0462B298DEDA58861FEDBAB96E422784C26FCFE60CE046DD275EAA12E0B0AAB7">>},
  {<<"iso8601">>, <<"56D173EC568D42E95908797A9B7D27BCF0B377443277416733EB1A544A4A47C2">>},
  {<<"jiffy">>, <<"919A87D491C5A6B5E3BBC27FAFEDC3A0761CA0B4C405394F121F582FD4E3F0E5">>},
  {<<"pdm_logger">>, <<"91F0ACED403631A12BFEBFE0B23B1E214F6BF698C233E0E9053F32517B9F94B4">>},
- {<<"pipe">>, <<"85D7CEFE5A7E7CCDD2B3E467036703DCDD68F566EE525A6BE6A0D48C2E2778E0">>},
+ {<<"pipe">>, <<"12513CFF148111CB3E533C0ED9BAFA67AB0C5EC3A05D0F452D8AF529C38B42D1">>},
  {<<"process_group">>, <<"E57505E5459D28B15B099CF797EA3D528EFDE461E554A15A2A49359D3D452E3C">>},
  {<<"stream">>, <<"578868F5DD658D3477D626D13D2FA77F3EBDC66EBA71145E835E0D5027A13B8C">>},
  {<<"time_utils">>, <<"48F3F5DD43202280B3F8184092F79EDC5CB4BF75F2B477F5512491A3D2124123">>}]}
