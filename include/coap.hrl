@@ -174,7 +174,7 @@
     port :: inet:port_number(),
     msg_id :: coap_msg_id(),
     waiting = queue:new() :: queue:queue(),
-    active = maps:new() :: maps:map()
+    active = maps:new() :: map()
 }).
 
 -record(coap_request, {
@@ -198,7 +198,7 @@
 }).
 
 -record(coap_server_state, {
-    resources = maps:new() :: maps:map(),
+    resources = maps:new() :: map(),
     msg_id :: coap_msg_id()
 }).
 
