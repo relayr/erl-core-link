@@ -1,0 +1,7 @@
+{application,coap_resources,
+             [{description,"CoAP Resources & CoRE link parser"},
+              {links,[{"GitHub","https://github.com/relayr/pdm-erl-coap-resources"}]},
+              {vsn,"1.0.0"},
+              {registered,[]},
+              {applications,[kernel,stdlib,pdm_logger,conf]},
+              {licenses,["MIT"]}]}.

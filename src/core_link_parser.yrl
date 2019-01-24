@@ -74,7 +74,7 @@ number -> integer : value_of('$1').
 
 Erlang code.
 
--include("../include/coap.hrl").
+-include("../include/coap_resources.hrl").
 
 value_of(Token) -> 
     element(3, Token).
