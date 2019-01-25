@@ -2,13 +2,13 @@
 %% @author jodias
 %% @copyright Proximetry Inc. 2013
 %% @version 1.0
-%% @doc Constrained Application Protocol resources definitions.
+%% @doc Constrained resources definitions.
 %% @end
 %%------------------------------------------------------------------------------
 
--ifndef(coap_resources_hrl).
+-ifndef(core_link_hrl).
 
--define(coap_resources_hrl, true).
+-define(core_link_hrl, true).
 
 %%------------------------------------------------------------------------------
 %% Include files
@@ -21,16 +21,15 @@
 %%------------------------------------------------------------------------------
 %% Types
 %%------------------------------------------------------------------------------
--type coap_uri()                :: nonempty_string().
--type coap_resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
+-type core_resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
 
 %%------------------------------------------------------------------------------
 %% Records
 %%------------------------------------------------------------------------------
 
--record(coap_resource, {
-    uri            :: coap_uri(),
-    attributes    :: [coap_resource_attribute()]
+-record(core_resource, {
+    uri           :: nonempty_string(),
+    attributes    :: [core_resource_attribute()]
 }).
 
 -endif.
