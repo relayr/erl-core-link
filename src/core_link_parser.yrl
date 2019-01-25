@@ -53,8 +53,8 @@ Rootsymbol link_value_list.
 link_value_list -> link_value : ['$1'].
 link_value_list -> link_value ',' link_value_list : ['$1' | '$3'].
 
-link_value -> '<' uri '>' : #coap_resource{uri = '$2', attributes = []}.
-link_value -> '<' uri '>' link_params : #coap_resource{uri = '$2', attributes = '$4'}.
+link_value -> '<' uri '>' : #core_resource{uri = '$2', attributes = []}.
+link_value -> '<' uri '>' link_params : #core_resource{uri = '$2', attributes = '$4'}.
 
 uri -> text : '$1'.
 
@@ -74,7 +74,7 @@ number -> integer : value_of('$1').
 
 Erlang code.
 
--include("../include/coap_resources.hrl").
+-include("../include/core_link.hrl").
 
 value_of(Token) -> 
     element(3, Token).
