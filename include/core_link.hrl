@@ -21,7 +21,7 @@
 %%------------------------------------------------------------------------------
 %% Types
 %%------------------------------------------------------------------------------
--type core_resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
+-type resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
 
 %%------------------------------------------------------------------------------
 %% Records
@@ -29,7 +29,9 @@
 
 -record(core_resource, {
     uri           :: nonempty_string(),
-    attributes    :: [core_resource_attribute()]
+    attributes    :: [resource_attribute()]
 }).
+
+-type resource() :: #core_resource{}.
 
 -endif.
