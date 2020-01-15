@@ -10,8 +10,13 @@ There's the following `#core_resource{}` record defined in `core_link/include/co
 ```
 -record(core_resource, {
     uri           :: nonempty_string(),
-    attributes    :: {nonempty_string(), string() | integer() | undefined}
+    attributes    :: [{nonempty_string(), string() | integer() | undefined}]
 }).
+```
+The following exported types are also defined in `core_link` module:
+```
+-type resource_attribute() :: {nonempty_string(), string() | integer() | undefined}.
+-type resource() :: #core_resource{}.
 ```
 
 ---
