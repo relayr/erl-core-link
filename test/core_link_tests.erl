@@ -32,7 +32,7 @@
 -define(BATTERY_SENSOR_CLF(Id), "</dev/battery" ++ integer_to_list(Id) ++ ">;rt=\"Battery\";if=\"Sensor\"").
 -define(TEMPERATURE_SENSOR_CLF, "</dev/temperature>;rt=\"Temperature\";if=\"Sensor\";sz=2").
 
--define(NSP_ENDPOINTS_CLF, "<http://localhost:8080/xri/@domain*light-1>;if=\"Light\";stl=\"121\"" 
+-define(NSP_ENDPOINTS_CLF, "<http://localhost:8080/xri/@domain*light-1>;if=\"Light\";stl=\"121\""
     ++ ",<http://localhost:8080/xri/@domain*access-point-1>;if=\"AccessPoint\"").
 -define(NSP_ENDPOINTS, [
     #core_resource{uri = "http://localhost:8080/xri/@domain*light-1", attributes = [{"if", "Light"}, {"stl", "121"}]},
@@ -80,6 +80,12 @@ parse_resources_test() ->
 
 parse_empty_test() ->
     ?assertEqual({ok, []}, core_link:parse_resources(?EMPTY_CLF)).
+
+parse_invalid_resources_test() ->
+    ?assertMatch({error, _}, core_link:parse_resources("<>")),
+    ?assertMatch({error, _}, core_link:parse_resources("/dev")), % invalid URI format
+    ?assertMatch({error, _}, core_link:parse_resources("</dev>sz=2")), % missing ';' character between URI and attributes
+    ?assertMatch({error, _}, core_link:parse_resources("</dev/temp>;st=1</dev/bat>")).  % missing ',' character between resources
 
 %% =============================================================================
 %% Property based tests

@@ -28,8 +28,8 @@
 %%------------------------------------------------------------------------------
 
 -record(core_resource, {
-    uri           :: nonempty_string(),
-    attributes    :: [resource_attribute()]
+    uri             :: nonempty_string(),
+    attributes = [] :: [resource_attribute()]
 }).
 
 -type resource() :: #core_resource{}.
