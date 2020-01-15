@@ -17,7 +17,7 @@ There's the following `#core_resource{}` record defined in `core_link/include/co
 ---
 ### Examples
 
-#### build/1
+#### core_link:build_resources/1
 Build resources in CoRE Link Format from Erlang records.
 ```
 1> rr(core_link).
@@ -32,7 +32,7 @@ Build resources in CoRE Link Format from Erlang records.
 {ok,"</dev/temperature>;rt=\"Temperature\";if=\"Sensor\";sz=2"}
 ```
 
-#### parse/1
+#### core_link:parse_resources/1
 Parse resources in CoRE Link Format to Erlang records.
 ```
 3> core_link:parse_resources("</dev/temperature>;rt=\"Temperature\";if=\"Sensor\";sz=2,</dev/battery2>;rt=\"Battery\";if=\"Sensor\"").
